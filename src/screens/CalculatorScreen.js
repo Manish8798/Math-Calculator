@@ -61,7 +61,8 @@ const CalculatorScreen = props => {
 
   const handleSolution = inputValues => {
     console.log(inputValues);
-    const filteredArray = inputValues.filter((item) => item !== '');
+    Keyboard.dismiss();
+    const filteredArray = inputValues.filter(item => item !== '');
     switch (value?.name) {
       case 'HCF':
         setResult(calculateHCFOfNNumbers(filteredArray));
@@ -96,16 +97,10 @@ const CalculatorScreen = props => {
     return (
       <View
         style={{
-          padding: 10,
+          paddingHorizontal: 10,
+          paddingBottom: '40%',
         }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginVertical: 20,
-            marginHorizontal: 10,
-          }}>
+        <View style={styles.btnContainer}>
           <Button
             title={`Add Input`}
             buttonStyle={{
@@ -113,7 +108,7 @@ const CalculatorScreen = props => {
               borderRadius: 4,
             }}
             containerStyle={{
-              width: '40%',
+              // width: '40%',
               marginHorizontal: 5,
               marginVertical: 1,
               alignSelf: 'center',
@@ -127,16 +122,32 @@ const CalculatorScreen = props => {
               borderRadius: 4,
             }}
             containerStyle={{
-              width: '40%',
+              // width: '40%',
               marginHorizontal: 5,
               marginVertical: 1,
               alignSelf: 'center',
             }}
             onPress={() => handleAddMoreInput('sub')}
           />
+          <Button
+            title={`Answer`}
+            buttonStyle={{
+              backgroundColor: '#1B66C9',
+              borderRadius: 4,
+            }}
+            containerStyle={{
+              // width: '40%',
+              marginHorizontal: 5,
+              marginVertical: 1,
+              alignSelf: 'center',
+            }}
+            onPress={() => handleSolution(inputValues)}
+          />
         </View>
-
-        <ScrollView style={{}}>
+        <View style={styles.btnContainer}>
+          <Text style={styles.resultText}>Result: {result}</Text>
+        </View>
+        <ScrollView style={{paddingBottom: '10%'}}>
           {inputCount?.map((val, i) => (
             <Input
               key={i}
@@ -144,28 +155,11 @@ const CalculatorScreen = props => {
               placeholder={`Enter Value ${i + 1}`}
               style={styles.input}
               value={val[i]}
+              inputContainerStyle={{borderColor: 'transparent'}}
               onChangeText={text => handleChangeText(text, i)}
             />
           ))}
         </ScrollView>
-        <Button
-          title={`Answer`}
-          buttonStyle={{
-            backgroundColor: '#0B8043',
-            borderRadius: 4,
-          }}
-          containerStyle={{
-            width: '50%',
-            marginHorizontal: 5,
-            marginVertical: 1,
-            alignSelf: 'center',
-          }}
-          onPress={() => handleSolution(inputValues)}
-        />
-        <Text
-          style={styles.resultText}>
-          Result {result}
-        </Text>
       </View>
     );
   };
@@ -190,16 +184,10 @@ const CalculatorScreen = props => {
     return (
       <View
         style={{
-          padding: 10,
+          paddingHorizontal: 10,
+          paddingBottom: '40%',
         }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginVertical: 20,
-            marginHorizontal: 10,
-          }}>
+        <View style={styles.btnContainer}>
           <Button
             title={`Add Input`}
             buttonStyle={{
@@ -207,7 +195,7 @@ const CalculatorScreen = props => {
               borderRadius: 4,
             }}
             containerStyle={{
-              width: '40%',
+              // width: '40%',
               marginHorizontal: 5,
               marginVertical: 1,
               alignSelf: 'center',
@@ -221,16 +209,32 @@ const CalculatorScreen = props => {
               borderRadius: 4,
             }}
             containerStyle={{
-              width: '40%',
+              // width: '40%',
               marginHorizontal: 5,
               marginVertical: 1,
               alignSelf: 'center',
             }}
             onPress={() => handleAddMoreInput('sub')}
           />
+          <Button
+            title={`Answer`}
+            buttonStyle={{
+              backgroundColor: '#1B66C9',
+              borderRadius: 4,
+            }}
+            containerStyle={{
+              // width: '40%',
+              marginHorizontal: 5,
+              marginVertical: 1,
+              alignSelf: 'center',
+            }}
+            onPress={() => handleSolution(inputValues)}
+          />
         </View>
-
-        <ScrollView style={{}}>
+        <View style={styles.btnContainer}>
+          <Text style={styles.resultText}>Result: {result}</Text>
+        </View>
+        <ScrollView style={{paddingBottom: '10%'}}>
           {inputCount?.map((val, i) => (
             <Input
               key={i}
@@ -238,25 +242,11 @@ const CalculatorScreen = props => {
               placeholder={`Enter Value ${i + 1}`}
               style={styles.input}
               value={val[i]}
+              inputContainerStyle={{borderColor: 'transparent'}}
               onChangeText={text => handleChangeText(text, i)}
             />
           ))}
         </ScrollView>
-        <Button
-          title={`Answer`}
-          buttonStyle={{
-            backgroundColor: '#0B8043',
-            borderRadius: 4,
-          }}
-          containerStyle={{
-            width: '50%',
-            marginHorizontal: 5,
-            marginVertical: 1,
-            alignSelf: 'center',
-          }}
-          onPress={() => handleSolution(inputValues)}
-        />
-        <Text style={styles.resultText}>Result {result}</Text>
       </View>
     );
   };
@@ -277,15 +267,30 @@ const styles = StyleSheet.create({
   },
   input: {
     borderColor: '#fff',
-    color: '#fff'
+    color: '#fff',
+    borderRadius: 10,
+    borderWidth: 1,
+    padding: 10,
+    backgroundColor: '#010409',
   },
   resultText: {
     alignSelf: 'center',
     fontSize: 24,
     padding: 10,
     fontWeight: 'bold',
-    color: '#2581F7'
-  }
+    color: '#fff',
+    width: '100%',
+    backgroundColor: '#0B8043',
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 20,
+    marginHorizontal: 10,
+  },
 });
 
 export default CalculatorScreen;
