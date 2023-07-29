@@ -60,14 +60,16 @@ const CalculatorScreen = props => {
   };
 
   const handleSolution = inputValues => {
+    console.log(inputValues);
+    const filteredArray = inputValues.filter((item) => item !== '');
     switch (value?.name) {
       case 'HCF':
-        setResult(calculateHCFOfNNumbers(inputValues));
-        console.log(calculateHCFOfNNumbers(inputValues));
+        setResult(calculateHCFOfNNumbers(filteredArray));
+        console.log(calculateHCFOfNNumbers(filteredArray));
         break;
       case 'LCM':
-        setResult(calculateLCM(inputValues));
-        console.log(calculateLCM(inputValues));
+        setResult(calculateLCM(filteredArray));
+        console.log(calculateLCM(filteredArray));
         break;
     }
   };
