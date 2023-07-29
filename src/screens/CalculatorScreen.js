@@ -214,7 +214,7 @@ const CalculatorScreen = props => {
   }
 
   const handleSolution = inputValues => {
-    console.log(inputValues);
+    console.log('handleSolution', inputValues);
     Keyboard.dismiss();
     const filteredArray = inputValues?.filter(item => item !== '');
     switch (value?.name) {
