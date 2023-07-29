@@ -10,7 +10,9 @@ const App = () => {
   return(
     <NavigationContainer>
     <Stack.Navigator screenOptions={{
-      headerShown: false
+      headerShown: false,
+      headerStyle: {backgroundColor: '#010409'},
+      headerTintColor: '#fff'
     }}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen options={{

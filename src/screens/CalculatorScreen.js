@@ -271,17 +271,18 @@ const CalculatorScreen = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#0D1117',
   },
   input: {
     borderColor: '#fff',
+    color: '#fff'
   },
   resultText: {
     alignSelf: 'center',
     fontSize: 24,
     padding: 10,
     fontWeight: 'bold',
-    color: '#000'
+    color: '#2581F7'
   }
 });
 

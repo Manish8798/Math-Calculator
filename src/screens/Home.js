@@ -28,7 +28,7 @@ const Home = props => {
             key={i}
             title={`Calculate ${val}`}
             buttonStyle={{
-              backgroundColor: '#4285F4',
+              backgroundColor: '#121D2F',
               borderRadius: 5,
             }}
             containerStyle={{
@@ -48,7 +48,7 @@ const Home = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#0D1117',
     justifyContent: 'center',
     // alignItems: 'center',
   },
