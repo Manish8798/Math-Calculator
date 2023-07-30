@@ -9,6 +9,11 @@ import {
   Keyboard,
 } from 'react-native';
 import {Button, Input} from '@rneui/themed';
+import {
+  hcfOfNumbers,
+  lcmOfNumbers,
+  rationalNumbers,
+} from '../utils/calculation';
 
 const CalculatorScreen = props => {
   React.useLayoutEffect(() => {
@@ -175,62 +180,24 @@ const CalculatorScreen = props => {
     }
   };
 
-  // function gcd(a, b) {
-  //   if (b === 0) return a;
-  //   return gcd(b, a % b);
-  // }
-
-  // // Function to find the least common multiple (LCM)
-  // function lcm(a, b) {
-  //   return (a * b) / gcd(a, b);
-  // }
-
-  // Function to find n rational numbers between two fractions (numeratorA/denominatorA and numeratorB/denominatorB)
-  function findNRationalNumbersBetweenFractions(
-    numeratorA,
-    denominatorA,
-    numeratorB,
-    denominatorB,
-    n,
-  ) {
-    if (numeratorA / denominatorA >= numeratorB / denominatorB) {
-      console.error(
-        'Invalid input: the first fraction should be less than the second fraction.',
-      );
-      return [];
-    }
-
-    const commonDenominator = lcm(denominatorA, denominatorB);
-    const stepNumerator = (numeratorB - numeratorA) / (n + 1);
-    const rationalNumbers = [];
-
-    for (let i = 1; i <= n; i++) {
-      const numerator = numeratorA + stepNumerator * i;
-      const denominator = commonDenominator;
-      rationalNumbers.push([numerator, denominator]);
-    }
-
-    return rationalNumbers;
-  }
-
   const handleSolution = inputValues => {
     console.log('handleSolution', inputValues);
     Keyboard.dismiss();
     const filteredArray = inputValues?.filter(item => item !== '');
     switch (value?.name) {
       case 'HCF':
-        setResult(calculateHCFOfNNumbers(filteredArray));
-        console.log(calculateHCFOfNNumbers(filteredArray));
+        setResult(hcfOfNumbers(filteredArray));
+        console.log(hcfOfNumbers(filteredArray));
         break;
       case 'LCM':
-        setResult(calculateLCM(filteredArray));
-        console.log(calculateLCM(filteredArray));
+        setResult(lcmOfNumbers(filteredArray));
+        console.log(lcmOfNumbers(filteredArray));
         break;
       case 'Rational Numbers':
         const {num1, deno1} = inputRationalNum1;
         const {num2, deno2} = inputRationalNum2;
         setResult(
-          `Rational numbers between, ${num1}/${deno1}, and, ${num2}/${deno2}, are: ${findNRationalNumbersBetweenFractions(
+          `Rational numbers between, ${num1}/${deno1}, and, ${num2}/${deno2}, are: ${rationalNumbers(
             num1,
             deno1,
             num2,
@@ -238,29 +205,9 @@ const CalculatorScreen = props => {
             5,
           )}`,
         );
-        console.log(
-          findNRationalNumbersBetweenFractions(num1, deno1, num2, deno2, 5),
-        );
+        console.log(rationalNumbers(num1, deno1, num2, deno2, 5));
         break;
     }
-  };
-
-  const calculateHCF = (a, b) => {
-    while (b !== 0) {
-      const temp = b;
-      b = a % b;
-      a = temp;
-    }
-    return a;
-  };
-
-  // Function to calculate the HCF of n numbers
-  const calculateHCFOfNNumbers = numbers => {
-    let hcf = numbers[0];
-    for (let i = 1; i < numbers.length; i++) {
-      hcf = calculateHCF(hcf, numbers[i]);
-    }
-    return hcf;
   };
 
   const hcfView = () => {
@@ -333,22 +280,6 @@ const CalculatorScreen = props => {
       </View>
     );
   };
-
-  function gcd(a, b) {
-    return b === 0 ? a : gcd(b, a % b);
-  }
-
-  function lcm(a, b) {
-    return (a * b) / gcd(a, b);
-  }
-
-  function calculateLCM(numbers) {
-    let result = numbers[0];
-    for (let i = 1; i < numbers.length; i++) {
-      result = lcm(result, numbers[i]);
-    }
-    return result;
-  }
 
   const lcmView = () => {
     return (
