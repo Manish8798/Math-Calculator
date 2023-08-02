@@ -35,7 +35,7 @@ const Home = props => {
               width: '80%',
               marginHorizontal: 10,
               marginVertical: 10,
-              alignSelf: 'center'
+              alignSelf: 'center',
             }}
             onPress={() => handleCalculations(val, i)}
           />

@@ -7,21 +7,25 @@ import CalculatorScreen from './src/screens/CalculatorScreen';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  return(
+  return (
     <NavigationContainer>
-    <Stack.Navigator screenOptions={{
-      headerShown: false,
-      headerStyle: {backgroundColor: '#010409'},
-      headerTintColor: '#fff'
-    }}>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen options={{
-        headerShown: true
-      }} name="CalculatorScreen" component={CalculatorScreen} />
-    </Stack.Navigator>
-  </NavigationContainer>
-  )
- 
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          headerStyle: {backgroundColor: '#010409'},
+          headerTintColor: '#fff',
+        }}>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          options={{
+            headerShown: true,
+          }}
+          name="CalculatorScreen"
+          component={CalculatorScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
 export default App;
